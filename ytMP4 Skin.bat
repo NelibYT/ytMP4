@@ -10,7 +10,7 @@ bin\yt-dlp.exe --update
 if not exist exports mkdir exports
 bin\yt-dlp.exe %url% --geo-bypass -f bestvideo+bestaudio --merge-output-format mp4 -o exports\%ttl%.mp4
 if not exist exports\%ttl%.mp4 set vc=1
-if %vc%==0 echo: & echo Conversion reussie :P & explorer exports
+if %vc%==0 powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Conversion reussie :P', 'Convertisseur YouTube vers MP4', [System.Windows.Forms.MessageBoxIcon]::Information);}" & explorer exports
 if %vc%==1 powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Une erreur est survenue. Verifiez l'URL ou votre connexion puis reessayez.', 'Convertisseur YouTube vers MP4', [System.Windows.Forms.MessageBoxIcon]::Warning);}"
 goto start
 :err
