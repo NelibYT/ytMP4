@@ -4,7 +4,7 @@ echo: & echo Convertisseur YouTube vers MP4
 :start
 color c
 set vc=0 & set url= & set ttl=%random%%random%
-if exist exports\test.mp4 goto start
+if exist exports\%ttl%.mp4 goto start
 echo: & echo ----------------------- & echo: & set /p url= Collez l'URL de votre video ici: 
 if not exist bin goto err
 echo: & echo Veuillez patienter, chargement... & bin\yt-dlp.exe --update > nul:
