@@ -1,7 +1,7 @@
 @echo off
 :start
 set vc=0 & set url= & set ttl=%random%%random%
-if exist exports\test.mp4 goto start
+if exist exports\%ttl%.mp4 goto start
 powershell -Command "& {Add-Type -AssemblyName Microsoft.VisualBasic; [Microsoft.VisualBasic.Interaction]::InputBox('Collez l'URL de votre video ici:', 'Convertisseur YouTube vers MP4')}" > bin\settings.tmp
 set /p url=<bin\settings.tmp
 if not exist bin goto err
