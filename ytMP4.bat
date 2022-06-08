@@ -6,7 +6,7 @@ color c
 set wrk=0 & set url= & set ttl=%pass%%random%%pass%%random%
 if exist exports\%ttl%.mp4 goto start
 echo ----------------------- & set /p url= Collez l'URL de votre video ici: 
-if %wrk%==0 if not exist exports\tmp mkdir exports\tmp
+if not exist exports\tmp mkdir exports\tmp
 echo: & echo Veuillez patienter, chargement... & src\yt-dlp.exe -f bestaudio %url% -o exports\tmp\audio.mp3 --ffmpeg-location src\ffmpeg.exe > nul:
 if not exist exports\tmp\audio.mp3 set wrk=1
 if %wrk%==0 echo Telechargement en cours... & src\yt-dlp.exe -f bestvideo %url% -o exports\tmp\video.mp4 --ffmpeg-location src\ffmpeg.exe > nul:
