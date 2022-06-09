@@ -1,6 +1,7 @@
 @echo off
 setlocal EnableDelayedExpansion
 :start
+del bin\url.tmp & del bin\ttl.tmp
 if not exist bin exit
 powershell -Command^ "& {Add-Type -AssemblyName Microsoft.VisualBasic; [Microsoft.VisualBasic.Interaction]::InputBox('Collez le lien de votre video ici:', 'Convertisseur YouTube vers MP4')}">bin\url.tmp & set /p url=<bin\url.tmp
 if "%url%"=="" exit
