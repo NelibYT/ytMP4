@@ -2,7 +2,6 @@
 setlocal EnableDelayedExpansion
 echo: & echo Convertisseur YouTube vers MP4
 :start
-del bin\ttl.tmp > nul:
 color c
 if not exist bin echo: & goto nobin
 set ttl= & set url= 
@@ -11,7 +10,7 @@ if not exist bin echo: & goto nobin
 echo: & echo Veuillez patienter, chargement... & bin\yt-dlp.exe --update > nul:
 echo Conversion en cours...
 bin\yt-dlp.exe --get-title %url%>bin\ttl.tmp & set /p ttl=<bin\ttl.tmp
-del bin\ttl.tmp > nul:
+del bin\ttl.tmp
 if exist "exports\%ttl%.mp4" echo Un fichier du meme nom existe deja. & goto start
 if not exist exports mkdir exports
 bin\yt-dlp.exe %url% --geo-bypass -f bestvideo+bestaudio --merge-output-format mp4 -o "exports\%ttl%.mp4" > nul:
