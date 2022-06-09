@@ -6,7 +6,6 @@ color c
 if not exist bin echo: & goto nobin
 set ttl= & set url= 
 echo: & echo ----------------------- & echo: & set /p url= Collez le lien de votre video ici: 
-if "%url%"=="" echo: & echo Une erreur est survenue. Verifiez l'URL ou votre connexion puis reessayez. & goto start
 if not exist bin echo: & goto nobin
 echo: & echo Veuillez patienter, chargement... & bin\yt-dlp.exe --update > nul:
 echo Conversion en cours...
