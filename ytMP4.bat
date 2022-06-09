@@ -3,17 +3,21 @@ setlocal EnableDelayedExpansion
 echo: & echo Convertisseur YouTube vers MP4
 :start
 color c
-set vc=0 & set url= & set ttl=%random%%random%
-if exist exports\%ttl%.mp4 goto start
-echo: & echo ----------------------- & echo: & set /p url= Collez l'URL de votre video ici: 
-if not exist bin goto err
+if not exist bin echo: & goto nobin
+set vc=0 & set url= 
+echo: & echo ----------------------- & echo: & set /p url= Collez le lien de votre video ici: 
+if not exist bin echo: & goto nobin
 echo: & echo Veuillez patienter, chargement... & bin\yt-dlp.exe --update > nul:
 if not exist exports mkdir exports
-echo Conversion en cours... & bin\yt-dlp.exe %url% --geo-bypass -f bestvideo+bestaudio --merge-output-format mp4 -o exports\%ttl%.mp4 > nul:
+echo Conversion en cours...
+bin\yt-dlp.exe --get-title %url%>bin\ttl.tmp & set /p ttl=<bin\ttl.tmp
+if exist exports\%ttl%.mp4 echo Un fichier du meme nom existe deja. & goto start
+del bin\ttl.tmp
+bin\yt-dlp.exe %url% --geo-bypass -f bestvideo+bestaudio --merge-output-format mp4 -o exports\%ttl%.mp4 > nul:
 if not exist exports\%ttl%.mp4 set vc=1
 if %vc%==0 echo: & echo Conversion reussie :P & echo %cd%\exports\%ttl%.mp4 & explorer exports
 if %vc%==1 echo: & echo Une erreur est survenue. Verifiez l'URL ou votre connexion puis reessayez.
 goto start
-:err
+:nobin
 echo Le dossier 'bin' est introuvable. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases
 echo: & set /p exit= Appuyez sur Entree pour quitter.
