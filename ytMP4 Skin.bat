@@ -10,7 +10,7 @@ bin\yt-dlp.exe --update
 if not exist exports mkdir exports
 bin\yt-dlp.exe --get-filename %url%>bin\ttl.tmp & set /p ttl=<bin\ttl.tmp
 if exist bin\url.tmp del bin\url.tmp & if exist bin\ttl.tmp del bin\ttl.tmp
-if exist "exports\%ttl%.mp4" powershell -Command^ "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Un fichier du meme nom existe deja.', 'ytMP4', 'OK', [System.Windows.Forms.MessageBoxIcon]::Warning)}"
+if exist "exports\%ttl%.mp4" powershell -Command^ "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Un fichier du meme nom existe deja.', 'ytMP4', 'OK', [System.Windows.Forms.MessageBoxIcon]::Warning)}" & exit
 bin\yt-dlp.exe %url% --geo-bypass -f bestvideo+bestaudio --merge-output-format mp4 -o "exports\%ttl%.mp4"
 if exist "exports\%ttl%.mp4" powershell -Command^ "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Conversion reussie :P', 'Convertisseur YouTube vers MP4', 'OK', [System.Windows.Forms.MessageBoxIcon]::Information)}" & explorer exports
 if not exist "exports\%ttl%.mp4" powershell -Command^ "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Une erreur est survenue. Verifiez le lien ou votre connexion puis reessayez.', 'ytMP4 Skin', 'OK', [System.Windows.Forms.MessageBoxIcon]::Error)}" & exit
