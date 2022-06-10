@@ -4,16 +4,17 @@ echo: & echo Convertisseur YouTube vers MP4
 :start
 color c
 if not exist bin echo: & goto nobin
+if exist bin\ttl.tmp del bin\ttl.tmp
 set ttl= & set url= 
 echo: & echo ----------------------- & echo: & set /p url= Collez le lien de votre video ici: 
 if not exist bin echo: & goto nobin
 echo: & echo Veuillez patienter, chargement... & bin\yt-dlp.exe --update > nul:
 echo Conversion en cours...
-bin\yt-dlp.exe --get-title %url%>bin\ttl.tmp & set /p ttl=<bin\ttl.tmp
-del bin\ttl.tmp
+bin\yt-dlp.exe --no-warnings --get-filename %url%>bin\ttl.tmp & set /p ttl=<bin\ttl.tmp
+if exist bin\ttl.tmp del bin\ttl.tmp
 if exist "exports\%ttl%.mp4" echo Un fichier du meme nom existe deja. & goto start
 if not exist exports mkdir exports
-bin\yt-dlp.exe %url% --geo-bypass -f bestvideo+bestaudio --merge-output-format mp4 -o "exports\%ttl%.mp4" > nul:
+bin\yt-dlp.exe %url% --no-warnings --geo-bypass -f bestvideo+bestaudio --merge-output-format mp4 -o "exports\%ttl%.mp4" > nul:
 if exist "exports\%ttl%.mp4" echo: & echo Conversion reussie :P & echo "%cd%\exports\%ttl%.mp4" & explorer exports
 if not exist "exports\%ttl%.mp4" echo: & echo Une erreur est survenue. Verifiez l'URL ou votre connexion puis reessayez.
 goto start
