@@ -19,5 +19,5 @@ if exist "exports\%ttl%.mp4" echo: & echo Conversion reussie :P & echo "%cd%\exp
 if not exist "exports\%ttl%.mp4" echo: & echo Une erreur est survenue. Verifiez le lien ou votre connexion puis reessayez.
 goto start
 :nobin
-echo Le dossier 'bin' est introuvable. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases
+echo Le dossier bin est introuvable. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases
 echo: & set /p exit= Appuyez sur Entree pour quitter.
