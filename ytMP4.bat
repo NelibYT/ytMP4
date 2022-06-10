@@ -5,7 +5,7 @@ echo: & echo Convertisseur YouTube vers MP4
 color c
 if not exist bin echo: & goto nobin
 if exist bin\ttl.tmp del bin\ttl.tmp
-set ttl= & set url= 
+set url= 
 echo: & echo ----------------------- & echo: & set /p url= Collez le lien de votre video ici: 
 if not exist bin echo: & goto nobin
 echo: & echo Veuillez patienter, chargement... & bin\yt-dlp.exe --update > nul:
