@@ -12,7 +12,7 @@ echo: & echo Veuillez patienter, chargement... & bin\yt-dlp.exe --update > nul:
 echo Conversion en cours...
 bin\yt-dlp.exe --no-warnings --get-filename %url%>bin\ttl.tmp & set /p ttl=<bin\ttl.tmp
 if exist bin\ttl.tmp del bin\ttl.tmp
-if exist "exports\%ttl%.mp4" echo Un fichier du meme nom existe deja. & goto start
+if exist "exports\%ttl%.mp4" echo: & echo Un fichier du meme nom existe deja. & goto start
 if not exist exports mkdir exports
 bin\yt-dlp.exe %url% --no-warnings --geo-bypass -f bestvideo+bestaudio --merge-output-format mp4 -o "exports\%ttl%.mp4" > nul:
 if exist "exports\%ttl%.mp4" echo: & echo Conversion reussie :P & echo "%cd%\exports\%ttl%.mp4" & explorer exports
