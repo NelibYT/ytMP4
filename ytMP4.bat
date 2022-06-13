@@ -1,13 +1,14 @@
 @echo off & title ytMP4
-setlocal EnableDelayedExpansion
+setlocal enabledelayedexpansion
 echo: & echo Convertisseur YouTube vers MP4
 :start
 color c
-if not exist bin\* echo: & goto nobin
-if exist bin\ttl.tmp del bin\ttl.tmp
+if not exist bin\yt-dlp.exe echo: & goto nobin
+if not exist bin\ffmpeg.exe echo: & goto nobin
 set url= 
 echo: & echo ----------------------- & echo: & set /p url= Collez le lien de votre video ici: 
-if not exist bin\* echo: & goto nobin
+if not exist bin\yt-dlp.exe echo: & goto nobin
+if not exist bin\ffmpeg.exe echo: & goto nobin
 echo: & echo Veuillez patienter, chargement... & bin\yt-dlp.exe --update > nul:
 echo Conversion en cours...
 bin\yt-dlp.exe --no-warnings --get-filename %url%>bin\ttl.tmp & set /p ttl=<bin\ttl.tmp
@@ -19,5 +20,5 @@ if exist "exports\%ttl%.mp4" echo: & echo Conversion reussie :P & echo "%cd%\exp
 if not exist "exports\%ttl%.mp4" echo: & echo Une erreur est survenue. Verifiez le lien ou votre connexion puis reessayez.
 goto start
 :nobin
-echo Le dossier bin est introuvable. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases
+echo Le dossier bin est introuvable ou incomplet. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases
 echo: & set /p exit= Appuyez sur Entree pour quitter.
