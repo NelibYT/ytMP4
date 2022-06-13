@@ -1,4 +1,4 @@
-@echo off & title ytMP4
+@echo off & title ytMP4 1.1
 setlocal enabledelayedexpansion
 echo: & echo Convertisseur YouTube vers MP4
 :start
