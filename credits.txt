@@ -4,4 +4,7 @@ ffmpeg : https://github.com/yt-dlp/ffmpeg-builds
 -
 curl : https://github.com/curl/curl
 -
+sfk : http://stahlworks.com/sfk
+-
 kix32 : http://kixtart.org
+-
