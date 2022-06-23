@@ -1,6 +1,7 @@
 yt-dlp : https://github.com/yt-dlp/yt-dlp
 -
-ffmpeg : https://github.com/yt-dlp/FFmpeg-Builds
+ffmpeg : https://github.com/yt-dlp/ffmpeg-builds
+-
+curl : https://github.com/curl/curl
 -
 kix32 : http://kixtart.org
--
