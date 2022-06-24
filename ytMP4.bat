@@ -1,9 +1,9 @@
 @echo off & title ytMP4 1.2 & color c
 echo: & echo Convertisseur YouTube vers MP4
-::Si les ressources sont introuvables, je redirige vers le message d'erreur "nobin"
-if not exist "bin\*" goto nobin
-::Si la connexion ne fonctionne pas, je redirige vers le message d'erreur "noco"
-ping www.google.com -n 1 -w 1000 >nul & if errorlevel 1 goto noco
+::Si les ressources sont introuvables, un message d'erreur apparaît
+if not exist "bin\*" echo: & echo Le dossier bin est introuvable ou incomplet. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases & echo: & echo Appuyez sur Entree pour quitter. & pause >nul
+::Si la connexion ne fonctionne pas, un message d'erreur apparaît
+ping www.youtube.com -n 1 -w 1000 >nul & if errorlevel 1 echo: & echo ytMP4 ne peut pas se connecter a internet. Verifiez votre connexion. & echo: & echo Appuyez sur Entree pour quitter. & pause >nul
 ::J'utilise curl pour extraire les données de la dernière release
 ::"bin\curl.exe" -k --silent "https://api.github.com/repos/NelibYT/ytMP4/releases/latest">"bin\github.tmp"
 ::Début
@@ -29,9 +29,3 @@ if exist "exports\%ttl%.mp4" echo: & echo Conversion reussie :P & echo %cd%\expo
 if not exist "exports\%ttl%.mp4" echo: & echo Une erreur est survenue. Verifiez le lien ou votre connexion puis reessayez.
 ::Retour au début
 goto start
-::Message d'erreur "nobin"
-:nobin
-echo: & echo Le dossier bin est introuvable ou incomplet. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases & echo: & echo Appuyez sur Entree pour quitter. & pause >nul
-::Message d'erreur "noco"
-:noco
-echo: & echo ytMP4 ne peut pas se connecter a internet. Verifiez votre connexion. & echo: & echo Appuyez sur Entree pour quitter. & pause >nul
