@@ -10,8 +10,8 @@ ping www.youtube.com -n 1 -w 1000 >nul & if errorlevel 1 powershell -command "& 
 ::J'utilise curl et swissfileknife pour extraire le tag de la dernière release
 "bin\curl.exe" -k --silent "https://api.github.com/repos/NelibYT/ytMP4/releases/latest">"bin\maj.tmp" & "bin\sfk.exe" filter "bin\maj.tmp" -quiet -+tag_name -write -yes & set /p maj=<"bin\maj.tmp" & del "bin\maj.tmp"
 ::Si la version actuelle n'est pas celle présente sur GitHub, on peut la télécharger
-if not "%maj:~15,-2%"=="1.2" powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Une nouvelle version de ytMP4 Skin est disponible. Voulez-vous la telecharger?', 'ytMP4 Skin 1.2', 'YesNo', [System.Windows.Forms.MessageBoxIcon]::Information);}">"bin\dld.tmp" & set /p dld=<"bin\dld.tmp" & del "bin\dld.tmp"
-if %dld%==Yes start https://github.com/NelibYT/ytMP4/releases & exit
+if not "%maj:~15,-2%"=="1.3" powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Une nouvelle version de ytMP4 Skin est disponible. Voulez-vous la telecharger?', 'ytMP4 Skin 1.2', 'YesNo', [System.Windows.Forms.MessageBoxIcon]::Information);}">"bin\dld.tmp" & set /p dld=<"bin\dld.tmp" & del "bin\dld.tmp"
+if "%dld%"=="Yes" start https://github.com/NelibYT/ytMP4/releases & exit
 ::Je cache la console avec kixtart
 echo setconsole("hide")>"bin\tmp.kix" & "bin\kix32.exe" "bin\tmp.kix" & del "bin\tmp.kix"
 ::Sélection du dossier d'exportation
