@@ -6,5 +6,3 @@ curl : https://github.com/curl/curl
 -
 sfk : http://stahlworks.com/sfk
 -
-kix32 : http://kixtart.org
--
