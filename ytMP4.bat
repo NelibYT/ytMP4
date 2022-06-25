@@ -1,7 +1,5 @@
 @echo off & title ytMP4 1.3 & color c
 ::Si les ressources sont introuvables, un message d'erreur apparaît
-if not exist "bin\yt-dlp.exe" echo: & echo Le dossier bin est introuvable ou incomplet. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases & echo: & echo Appuyez sur Entree pour quitter. & pause >nul & exit
-if not exist "bin\ffmpeg.exe" echo: & echo Le dossier bin est introuvable ou incomplet. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases & echo: & echo Appuyez sur Entree pour quitter. & pause >nul & exit
 if not exist "bin\curl.exe" echo: & echo Le dossier bin est introuvable ou incomplet. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases & echo: & echo Appuyez sur Entree pour quitter. & pause >nul & exit
 if not exist "bin\sfk.exe" echo: & echo Le dossier bin est introuvable ou incomplet. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases & echo: & echo Appuyez sur Entree pour quitter. & pause >nul & exit
 ::Si la connexion ne fonctionne pas, un message d'erreur apparaît
@@ -19,6 +17,9 @@ color c
 ::Réinitialisation des variables
 set url= 
 set ttl= 
+::Si les ressources sont introuvables, un message d'erreur apparaît
+if not exist "bin\yt-dlp.exe" echo: & echo Le dossier bin est introuvable ou incomplet. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases & echo: & echo Appuyez sur Entree pour quitter. & pause >nul & exit
+if not exist "bin\ffmpeg.exe" echo: & echo Le dossier bin est introuvable ou incomplet. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases & echo: & echo Appuyez sur Entree pour quitter. & pause >nul & exit
 ::Copie du lien dans la console
 echo: & echo ----------------------- & echo: & set /p url=Collez le lien de votre video ici: 
 ::Extraction du titre de la vidéo vers une variable
