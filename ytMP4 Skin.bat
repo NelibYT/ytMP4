@@ -10,7 +10,7 @@ ping www.youtube.com -n 1 -w 1000 >nul & if errorlevel 1 powershell -command "& 
 "bin\curl.exe" -k "https://api.github.com/repos/NelibYT/ytMP4/releases/latest">"bin\maj.tmp" & "bin\sfk.exe" filter "bin\maj.tmp" -quiet -+tag_name -write -yes & set /p maj=<"bin\maj.tmp" & del "bin\maj.tmp"
 ::Si la version actuelle n'est pas celle présente sur GitHub, on peut la télécharger
 if not "%maj:~15,-2%"=="1.3" powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Une nouvelle version de ytMP4 Skin est disponible. Voulez-vous la telecharger?', 'ytMP4 Skin 1.3', 'YesNo', [System.Windows.Forms.MessageBoxIcon]::Information);}">"bin\dld.tmp" & set /p dld=<"bin\dld.tmp" & del "bin\dld.tmp"
-if "%dld%"=="Yes" start https://github.com/NelibYT/ytMP4/releases & exit
+if "%dld%"=="Yes" start https://github.com/NelibYT/ytMP4/releases/latest/download/ytMP4.zip & exit
 cls
 ::Sélection du dossier d'exportation
 powershell -command "& {[void] [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); $FolderBrowserDialog = New-Object System.Windows.Forms.FolderBrowserDialog; $FolderBrowserDialog.RootFolder = 'MyComputer'; if ($initialDirectory) {$FolderBrowserDialog.SelectedPath = $initialDirectory}; [void] $FolderBrowserDialog.ShowDialog(); return $FolderBrowserDialog.SelectedPath}">"bin\folder.tmp" & set /p folder=<"bin\folder.tmp" & del "bin\folder.tmp"
@@ -27,7 +27,7 @@ powershell -command "& {Add-Type -AssemblyName System.Windows.Forms; Add-Type -A
 ::J'empêche la conversion si le fichier existe déjà
 if exist "%folder%\%ttl:~0,-5%.mp4" powershell -command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Un fichier du meme nom existe deja.', 'ytMP4 Skin 1.3', 'OK', [System.Windows.Forms.MessageBoxIcon]::Warning)}" & exit
 ::Conversion de la vidéo avec yt-dlp
-"bin\yt-dlp.exe" %url% --geo-bypass -f bestvideo+bestaudio --merge-output-format mp4 -o "%folder%\%ttl:~0,-5%.mp4"
+"bin\yt-dlp.exe" %url% --geo-bypass -S vcodec:h264 -f bv+ba --embed-thumbnail --merge-output-format mp4 -o "%folder%\%ttl:~0,-5%.mp4"
 ::Suppression des vidéos en cache
 if exist *.webm del *.webm
 ::Message pour conversion réussie
