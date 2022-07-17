@@ -8,7 +8,7 @@ ping www.youtube.com -n 1 -w 1000 >nul & if errorlevel 1 echo: & echo ytMP4 ne p
 "bin\curl.exe" -k --silent "https://api.github.com/repos/NelibYT/ytMP4/releases/latest">"bin\maj.tmp" & "bin\sfk.exe" filter "bin\maj.tmp" -quiet -+tag_name -write -yes & set /p maj=<"bin\maj.tmp" & del "bin\maj.tmp"
 ::Si la version actuelle n'est pas celle présente sur GitHub, on peut la télécharger
 if not "%maj:~15,-2%"=="1.3" echo: & echo Une nouvelle version de ytMP4 est disponible. & set /p dld= Voulez-vous la telecharger? (1 = Oui, 2 = Non): 
-if "%dld%"=="1" start https://github.com/NelibYT/ytMP4/releases/latest/download/ytMP4.zip & exit
+if "%dld%"=="1" start "https://github.com/NelibYT/ytMP4/releases/latest/download/ytMP4.zip" & exit
 cls & echo: & echo Convertisseur YouTube vers MP4
 ::Début
 :start
@@ -29,7 +29,7 @@ echo Conversion en cours...
 if exist "exports\%ttl:~0,-5%.mp4" echo: & echo Un fichier du meme nom existe deja. & goto start
 ::Conversion de la vidéo avec yt-dlp
 if not exist exports mkdir exports
-"bin\yt-dlp.exe" %url% --quiet --geo-bypass -S vcodec:h264 -f bv+ba --embed-thumbnail --merge-output-format mp4 -o "exports\%ttl:~0,-5%.mp4"
+"bin\yt-dlp.exe" %url% -q --geo-bypass --no-playlist -S vcodec:h264 -f bv+ba --embed-thumbnail --embed-metadata --merge-output-format mp4 -o "exports\%ttl:~0,-5%.mp4"
 ::Suppression des vidéos en cache
 if exist *.webm del *.webm
 ::Message pour conversion réussie
