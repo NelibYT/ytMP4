@@ -29,7 +29,7 @@ echo Conversion en cours...
 if exist "exports\%ttl:~0,-5%.mp4" echo: & echo Un fichier du meme nom existe deja. & goto start
 ::Conversion de la vidéo avec yt-dlp
 if not exist exports mkdir exports
-"bin\yt-dlp.exe" %url% -q --geo-bypass --no-playlist -S vcodec:h264 -f bv+ba --embed-thumbnail --embed-metadata --merge-output-format mp4 -o "exports\%ttl:~0,-5%.mp4"
+"bin\yt-dlp.exe" %url% -q --geo-bypass --no-playlist -S vcodec:h264 -f bv+ba[ext=m4a] --embed-thumbnail --embed-metadata --merge-output-format mp4 -o "exports\%ttl:~0,-5%.mp4"
 ::Suppression des vidéos en cache
 if exist *.webm del *.webm
 ::Message pour conversion réussie
