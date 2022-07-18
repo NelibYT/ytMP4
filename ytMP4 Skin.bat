@@ -25,7 +25,7 @@ if "%url%"=="" exit
 ::J'empêche la conversion si le fichier existe déjà
 if exist "%folder%\%ttl:~0,-5%.mp4" powershell -command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Ce fichier existe deja a cet emplacement.', 'ytMP4 Skin 1.4', 'OK', [System.Windows.Forms.MessageBoxIcon]::Warning)}" & exit
 ::Conversion de la vidéo avec yt-dlp
-"bin\yt-dlp.exe" %url% --geo-bypass --no-playlist -S vcodec:h264 -f bv+ba[ext=m4a] --embed-thumbnail --embed-metadata --merge-output-format mp4 -o "%folder%\%ttl:~0,-5%.mp4"
+"bin\yt-dlp.exe" %url% --no-warnings --geo-bypass --no-playlist --embed-thumbnail --embed-metadata -S vcodec:h264 -f bv+ba[ext=m4a] --merge-output-format mp4 -o "%folder%\%ttl:~0,-5%.mp4"
 ::Suppression des vidéos en cache
 if exist *.webm del *.webm
 ::Message pour conversion réussie
