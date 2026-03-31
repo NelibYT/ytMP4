@@ -4,8 +4,10 @@ if not exist "bin\curl.exe" echo: & echo Le dossier bin est introuvable ou incom
 if not exist "bin\sfk.exe" echo: & echo Le dossier bin est introuvable ou incomplet. & echo Vous pouvez le trouver ici: https://github.com/NelibYT/ytMP4/releases & echo: & echo Appuyez sur Entree pour quitter. & pause >nul & exit
 ::Si la connexion ne fonctionne pas, un message d'erreur apparaît
 ping www.youtube.com -n 1 -w 1000 >nul & if errorlevel 1 echo: & echo ytMP4 ne peut pas se connecter a internet. Verifiez votre connexion. & echo: & echo Appuyez sur Entree pour quitter. & pause >nul & exit
+::Mise à jour de yt-dlp
+"bin\yt-dlp.exe" --update --no-warnings
 ::J'utilise curl et swissfileknife pour extraire le tag de la dernière release
-"bin\curl.exe" -k --silent "https://api.github.com/repos/NelibYT/ytMP4/releases/latest">"bin\settings.tmp" & "bin\sfk.exe" filter "bin\settings.tmp" -quiet -+tag_name -write -yes & set /p maj=<"bin\settings.tmp" & del "bin\settings.tmp"
+cls & "bin\curl.exe" -k --silent "https://api.github.com/repos/NelibYT/ytMP4/releases/latest">"bin\settings.tmp" & "bin\sfk.exe" filter "bin\settings.tmp" -quiet -+tag_name -write -yes & set /p maj=<"bin\settings.tmp" & del "bin\settings.tmp"
 ::Si la version actuelle n'est pas celle présente sur GitHub, on peut la télécharger
 if not "%maj:~15,-2%"=="1.4" echo: & echo Une nouvelle version de ytMP4 est disponible. & set /p dld= Voulez-vous la telecharger? (1 = Oui, 2 = Non): 
 if "%dld%"=="1" start https://github.com/NelibYT/ytMP4/releases/latest/download/ytMP4.zip & exit
